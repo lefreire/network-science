@@ -1,0 +1,75 @@
+Number of vertex:  1490
+Number of edges:  19090
+DEGREE: 
+Mean: 
+in degree:  12.812080536912752
+out degree:  12.812080536912752
+
+
+Standard Deviation: 
+in degree:  29.94681395643224
+out degree:  20.817606489860168
+
+
+Median: 
+in degree:  2.0
+out degree:  4.0
+
+
+Maximum: 
+in degree:  338
+out degree:  256
+
+
+Minimum: 
+in degree:  0
+out degree:  0
+
+
+DISTANCE: 
+Mean:  2.9988244892072062
+Standard Deviation:  1.1301573453112794
+Median:  3.0
+Maximum:  9
+Minimum:  1
+
+
+CONNECTED COMPONENTS: 
+Mean:  2.1656976744186047
+Standard Deviation:  30.172496101994582
+Median:  1.0
+Maximum:  793
+Minimum:  1
+
+
+VERTEX CENTRALITY: 
+Mean: 
+betweeness:  0.0007104379822627487
+closeness:  0.23341263851239857
+katz:  0.0243807346168753
+
+
+Standard Deviation: 
+betweeness:  0.0035015961136974326
+closeness:  0.18649138435903936
+katz:  0.00875903642753093
+
+
+Median: 
+betweeness:  6.321139165349012e-07
+closeness:  0.2839561210795066
+katz:  0.021090975979254953
+
+
+Maximum: 
+betweeness:  0.09860876896320069
+closeness:  1.0
+katz:  0.11232088163794045
+
+
+Minimum: 
+betweeness:  0.0
+closeness:  0.0
+katz:  0.020488812148760936
+
+

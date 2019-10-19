@@ -1,0 +1,70 @@
+Number of vertex:  8361
+Number of edges:  15751
+DEGREE: 
+Mean: 
+out degree:  3.7677311326396365
+
+
+Standard Deviation: 
+out degree:  4.305309926187589
+
+
+Median: 
+out degree:  2.0
+
+
+Maximum: 
+out degree:  50
+
+
+Minimum: 
+out degree:  0
+
+
+DISTANCE: 
+Mean:  4.460715650380539
+Standard Deviation:  1.9779318039857787
+Median:  4.233332000000001
+Maximum:  27.388887999999998
+Minimum:  0.0434783
+
+
+CONNECTED COMPONENTS: 
+Mean:  6.277027027027027
+Standard Deviation:  159.77450508527795
+Median:  1.0
+Maximum:  5835
+Minimum:  1
+
+
+VERTEX CENTRALITY: 
+Mean: 
+betweeness:  0.00047639388369855485
+closeness:  0.460877886598101
+katz:  0.010914418270245552
+
+
+Standard Deviation: 
+betweeness:  0.0016285405516499795
+closeness:  1.3180389238515415
+katz:  0.0006916589718473388
+
+
+Median: 
+betweeness:  0.0
+closeness:  0.2457059677678647
+katz:  0.010693106252174305
+
+
+Maximum: 
+betweeness:  0.041900421139346014
+closeness:  22.999979300018637
+katz:  0.02416071431113876
+
+
+Minimum: 
+betweeness:  0.0
+closeness:  0.0
+katz:  0.010478140054808524
+
+

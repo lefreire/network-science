@@ -1,0 +1,52 @@
+Number of vertex:  22963
+Number of edges:  48436
+DEGREE: 
+Mean:  4.218612550624918
+Standard Deviation:  32.942427443788866
+Median:  2.0
+Maximum:  2390
+Minimum:  1
+
+
+DISTANCE: 
+Mean:  0.0014555136381353654
+Standard Deviation:  0.8977292890104761
+Median:  4.0
+Maximum:  9
+Minimum:  1
+
+
+CONNECTED COMPONENTS: 
+Mean:  22963.0
+Standard Deviation:  0.0
+Median:  22963.0
+Maximum:  22963
+Minimum:  22963
+
+
+VERTEX CENTRALITY: 
+Mean: 
+betweeness:  0.00012373874624911057
+katz:  0.005498813316342192
+
+
+Standard Deviation: 
+betweeness:  0.002188879114483019
+katz:  0.0036484748826833436
+
+
+Median: 
+betweeness:  0.0
+katz:  0.004729595784932957
+
+
+Maximum: 
+betweeness:  0.1374296348449819
+katz:  0.20801708039534977
+
+
+Minimum: 
+betweeness:  0.0
+katz:  0.0042305643167296235
+
+

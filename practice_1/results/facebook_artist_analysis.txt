@@ -1,0 +1,52 @@
+Number of vertex:  50515
+Number of edges:  819303
+DEGREE: 
+Mean:  32.43800851232307
+Standard Deviation:  63.473983822222856
+Median:  13.0
+Maximum:  1469
+Minimum:  0
+
+
+DISTANCE: 
+Mean:  0.0002871410338814875
+Standard Deviation:  0.7765072628414468
+Median:  4.0
+Maximum:  9
+Minimum:  1
+
+
+CONNECTED COMPONENTS: 
+Mean:  25257.5
+Standard Deviation:  25256.5
+Median:  25257.5
+Maximum:  50514
+Minimum:  1
+
+
+VERTEX CENTRALITY: 
+Mean: 
+betweeness:  5.289865585026835e-05
+katz:  0.0
+
+
+Standard Deviation: 
+betweeness:  0.00036981460687405957
+katz:  0.0
+
+
+Median: 
+betweeness:  2.7713158990686963e-06
+katz:  0.0
+
+
+Maximum: 
+betweeness:  0.032852548407208325
+katz:  0.0
+
+
+Minimum: 
+betweeness:  0.0
+katz:  0.0
+
+
