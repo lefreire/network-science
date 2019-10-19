@@ -17,14 +17,17 @@ all_lines = file_facebook_artist.readlines()
 for edge in range(4, len(all_lines)):
 	relation = [int(i) for i in all_lines[edge].replace(',', ' ').split() if i.isdigit()]
 	v1, v2 = relation[0], relation[1]
-	graph.add_edge(v1, v2) 
+	graph.add_edge(v1, v2)
+
+print("Number of vertex: ", get_num_vertex(graph))
+print("Number of edges: ", get_num_edges(graph)) 
 
 '''
    Calculating degree and information about
-'''
+# '''
 out_degree = all_out_degree(graph)
-plot_distribution(graph, out_degree, 'Degree', 'out_degree_facebook')
-plot_ccdf(graph, out_degree, 'Degree', 'out_degree_facebook')
+plot_distribution(graph, out_degree, 'Degree', 'facebook/out_degree_facebook')
+plot_ccdf(graph, out_degree, 'Degree', 'facebook/out_degree_facebook')
 print("DEGREE: ")
 
 #mean
@@ -46,8 +49,8 @@ print("Minimum: ", get_min(out_degree))
    Calculating distance and information about
 '''
 distance = sample_shortest_distance(graph)
-plot_distribution(graph, distance, 'Distance', 'distance_facebook', metric='distance')
-plot_ccdf(graph, distance, 'Distance', 'distance_facebook', metric='distance')
+plot_distribution(graph, distance, 'Distance', 'facebook/distance_facebook', metric='distance')
+plot_ccdf(graph, distance, 'Distance', 'facebook/distance_facebook', metric='distance')
 print("\n")
 print("DISTANCE: ")
 
@@ -66,17 +69,40 @@ print("Maximum: ", get_max(distance))
 #minimum value
 print("Minimum: ", get_min(distance))
 
+'''
+   Calculating size of connected components and information about
+'''
+connected = all_connected_components(graph)
+plot_distribution(graph, connected, 'Connected Components', 'facebook/cc_facebook', metric='cc')
+plot_ccdf(graph, connected,'Connected Components', 'facebook/cc_facebook', metric='cc')
+print("\n")
+print("CONNECTED COMPONENTS: ")
+#mean
+print("Mean: ", get_mean(connected))
+
+#standard deviation
+print("Standard Deviation: ", get_std(connected))
+
+#median
+print("Median: ", get_median(connected))
+
+#maximum value
+print("Maximum: ", get_max(connected))
+
+#minimum value
+print("Minimum: ", get_min(connected))
+
 
 '''
    Calculating vertex centrality and information about
 '''
 betweeness = all_betweeness(graph, sample=True)
 katz = all_katz(graph, max_iter=10000)
-plot_distribution(graph, betweeness, 'Betweeness','betweeness_facebook', metric='betweeness')
-plot_ccdf(graph, betweeness, 'Betweeness', 'betweeness_facebook', metric='betweeness')
+plot_distribution(graph, betweeness, 'Betweeness','facebook/betweeness_facebook', metric='betweeness')
+plot_ccdf(graph, betweeness, 'Betweeness', 'facebook/betweeness_facebook', metric='betweeness')
 
-plot_distribution(graph, katz, 'Katz','katz_facebook', metric='katz')
-plot_ccdf(graph, katz, 'Katz', 'katz_facebook', metric='katz')
+plot_distribution(graph, katz, 'Katz','facebook/katz_facebook', metric='katz')
+plot_ccdf(graph, katz, 'Katz', 'facebook/katz_facebook', metric='katz')
 print("\n")
 print("VERTEX CENTRALITY: ")
 #mean

@@ -27,12 +27,12 @@ def all_out_degree(graph):
     return graph.get_out_degrees(graph.get_vertices())
 
 
-def all_shortest_distance(graph):
-    distances = shortest_distance(graph)
+def all_shortest_distance(graph, weights=None):
+    distances = shortest_distance(graph, weights=weights)
     all_dist = []
     for vertex in graph.get_vertices():
         for dd in distances[graph.vertex(vertex)].a: 
-            if dd == np.iinfo(np.int32).max or dd == 0: 
+            if dd == np.finfo(np.double).max or dd == np.iinfo(np.int32).max or dd == 0: 
                 pass  
             else: 
                 all_dist.append(dd)
@@ -45,15 +45,19 @@ def sample_shortest_distance(graph):
     for source in source_vertex:
         target_vertex = np.random.randint(low=0,high=len(graph.get_vertices()), size=100)
         for target in target_vertex:
-            sample_dist.append(shortest_distance(graph, source, target=target))
+            distance = shortest_distance(graph, source, target=target)
+            if distance == np.finfo(np.double).max or distance == np.iinfo(np.int32).max or distance == 0:
+                pass
+            else: 
+                sample_dist.append(distance)
     return sample_dist
 
 
 def mean_distance(graph, distance):
     return sum(distance)/comb(get_num_vertex(graph), 2) 
 
-def all_connected_components(graph):
-    comp, hist, is_attractor = label_components(graph, attractors=True, directed=True)
+def all_connected_components(graph, attractors=False, directed=False):
+    comp, his = label_components(graph, attractors=attractors)
     comp_list = list(comp.a)
     size_components = []
     for component in range(0, max(comp.a)+1):
@@ -61,12 +65,12 @@ def all_connected_components(graph):
     return size_components
 
 
-def all_betweeness(graph, sample=False):
+def all_betweeness(graph, sample=False, weight=None):
     if sample:
         source_vertex = np.random.randint(low=0,high=len(graph.get_vertices()), size=1000)
         vertex_b, edges_b = betweenness(graph, source_vertex)
     else:
-        vertex_b, edges_b = betweenness(graph)
+        vertex_b, edges_b = betweenness(graph, weight=weight)
     all_b = []
     for vertex in vertex_b:
         if math.isnan(vertex): all_b.append(0)
@@ -74,8 +78,8 @@ def all_betweeness(graph, sample=False):
     return all_b
 
 
-def all_closeness(graph):
-    vertex_c = closeness(graph)
+def all_closeness(graph, weight=None):
+    vertex_c = closeness(graph, weight=weight)
     all_c = []
     for vertex in vertex_c:
         if math.isnan(vertex): all_c.append(0)
@@ -83,8 +87,8 @@ def all_closeness(graph):
     return all_c
 
 
-def all_katz(graph, max_iter=None):
-    vertex_k = katz(graph, max_iter=max_iter)
+def all_katz(graph, max_iter=None, weight=None):
+    vertex_k = katz(graph, max_iter=max_iter, weight=weight)
     all_k = []
     for vertex in vertex_k:
         if math.isnan(vertex): all_k.append(0)
@@ -126,7 +130,17 @@ def freq_relative(graph, all_measure, metric='degree'):
 
 
 def ccdf(graph, all_measure, metric='degree'):
-    return 1 - freq_relative(graph, all_measure, metric)
+    if metric == 'degree':
+        freq = freq_relative(graph, all_measure, metric)
+        ccdf = [1]
+        for i in range(1, len(freq)):   
+            sum_freq = 0    
+            for j in range(0, i-1):     
+                sum_freq += freq[j]     
+            ccdf.append(1-sum_freq) 
+        return ccdf
+    else:
+        return sorted(1 - freq_relative(graph, all_measure, metric), reverse=True)
 
 
 def plot_distribution(graph, all_measure, xlabel, filename, metric='degree'):
@@ -148,6 +162,19 @@ def plot_ccdf(graph, all_measure, xlabel, filename, metric='degree'):
     plt.ylabel('CCDF')
     plt.xlabel(xlabel)
     plt.savefig('graphs/'+filename+'_ccdf.eps')
+    plt.clf()
+
+
+def plot_weight_distribution(graph):
+    weights=graph.properties[('e', 'value')].a
+    weights_distribution = np.bincount(list(weights)) 
+    freq = weights_distribution/max(weights)
+    plt.plot(range(len(freq)), freq, 'o')
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.ylabel('CDF')
+    plt.xlabel('Weight')
+    plt.savefig('graphs/hep/weight_hep_cdf.eps')
     plt.clf()
 
 
