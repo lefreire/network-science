@@ -23,8 +23,8 @@ for edge in range(4, len(all_lines)):
    Calculating degree and information about
 '''
 out_degree = all_out_degree(graph)
-plot_distribution(graph, out_degree, 'out_degree_facebook')
-plot_ccdf(graph, out_degree, 'in_degree_facebook')
+plot_distribution(graph, out_degree, 'Degree', 'out_degree_facebook')
+plot_ccdf(graph, out_degree, 'Degree', 'out_degree_facebook')
 print("DEGREE: ")
 
 #mean
@@ -46,6 +46,8 @@ print("Minimum: ", get_min(out_degree))
    Calculating distance and information about
 '''
 distance = sample_shortest_distance(graph)
+plot_distribution(graph, distance, 'Distance', 'distance_facebook', metric='distance')
+plot_ccdf(graph, distance, 'Distance', 'distance_facebook', metric='distance')
 print("\n")
 print("DISTANCE: ")
 
@@ -70,6 +72,11 @@ print("Minimum: ", get_min(distance))
 '''
 betweeness = all_betweeness(graph, sample=True)
 katz = all_katz(graph, max_iter=10000)
+plot_distribution(graph, betweeness, 'Betweeness','betweeness_facebook', metric='betweeness')
+plot_ccdf(graph, betweeness, 'Betweeness', 'betweeness_facebook', metric='betweeness')
+
+plot_distribution(graph, katz, 'Katz','katz_facebook', metric='katz')
+plot_ccdf(graph, katz, 'Katz', 'katz_facebook', metric='katz')
 print("\n")
 print("VERTEX CENTRALITY: ")
 #mean

@@ -10,10 +10,10 @@ print("Number of edges: ", get_num_edges(graph))
 '''
 in_degree = all_in_degree(graph)
 out_degree = all_out_degree(graph)
-plot_distribution(graph, in_degree, 'in_degree_blog')
-plot_distribution(graph, out_degree, 'out_degree_blog')
-plot_ccdf(graph, in_degree, 'in_degree_blog')
-plot_ccdf(graph, out_degree, 'out_degree_blog')
+plot_distribution(graph, in_degree, 'In Degree', 'in_degree_blog')
+plot_distribution(graph, out_degree,'Out Degree', 'out_degree_blog')
+plot_ccdf(graph, in_degree, 'In Degree', 'in_degree_blog')
+plot_ccdf(graph, out_degree, 'Out Degree','out_degree_blog')
 print("DEGREE: ")
 #mean
 print("Mean: ")
@@ -48,6 +48,8 @@ print("in degree: ", get_min(out_degree))
    Calculating distance and information about
 '''
 distance = all_shortest_distance(graph)
+plot_distribution(graph, distance, 'Distance', 'distance_blog', metric='distance')
+plot_ccdf(graph, distance, 'Distance', 'distance_blog', metric='distance')
 print("\n")
 print("DISTANCE: ")
 #mean
@@ -69,6 +71,8 @@ print("Minimum: ", get_min(distance))
    Calculating size of connected components and information about
 '''
 connected = all_connected_components(graph)
+plot_distribution(graph, connected, 'Connected Components', 'cc_blog', metric='cc')
+plot_ccdf(graph, connected,'Connected Components', 'cc_blog', metric='cc')
 print("\n")
 print("CONNECTED COMPONENTS: ")
 #mean
@@ -92,6 +96,14 @@ print("Minimum: ", get_min(connected))
 betweeness = all_betweeness(graph)
 closeness = all_closeness(graph)
 katz = all_katz(graph)
+plot_distribution(graph, betweeness, 'Betweeness','betweeness_blog', metric='betweeness')
+plot_ccdf(graph, betweeness, 'Betweeness', 'betweeness_blog', metric='betweeness')
+
+plot_distribution(graph, closeness, 'Closeness', 'closeness_blog', metric='closeness')
+plot_ccdf(graph, closeness, 'Closeness', 'closeness_blog', metric='closeness')
+
+plot_distribution(graph, katz, 'Katz','katz_blog', metric='katz')
+plot_ccdf(graph, katz, 'Katz', 'katz_blog', metric='katz')
 print("\n")
 print("VERTEX CENTRALITY: ")
 #mean

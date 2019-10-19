@@ -32,7 +32,10 @@ def all_shortest_distance(graph):
     all_dist = []
     for vertex in graph.get_vertices():
         for dd in distances[graph.vertex(vertex)].a: 
-            all_dist.append(dd)
+            if dd == np.iinfo(np.int32).max or dd == 0: 
+                pass  
+            else: 
+                all_dist.append(dd)
     return all_dist
 
 
@@ -108,14 +111,20 @@ def get_min(all_measure):
     return np.min(all_measure)
 
 
-def freq_relative(graph, all_measure):
-    degree_distribution = np.bincount(list(all_measure))
-    freq = degree_distribution/len(graph.get_vertices())
-    return freq
+def freq_relative(graph, all_measure, metric='degree'):
+    if metric == 'degree':
+        degree_distribution = np.bincount(list(all_measure))
+        return degree_distribution/len(graph.get_vertices())
+    elif metric == 'distance':
+        distance_distribution = np.bincount(list(all_measure))
+        return distance_distribution/comb(get_num_vertex(graph), 2)
+    else:
+        return sorted(all_measure/np.max(all_measure), reverse=True)
 
 
-def ccdf(graph, all_measure):
-    freq = freq_relative(graph, all_measure)
+
+def ccdf(graph, all_measure, metric='degree'):
+    freq = freq_relative(graph, all_measure, metric)
     ccdf = [1]
     for i in range(1, len(freq)): 
         sum_freq = 0 
@@ -125,24 +134,25 @@ def ccdf(graph, all_measure):
     return ccdf
 
 
-def plot_distribution(graph, all_measure, filename):
-    freq = freq_relative(graph, all_measure)
+def plot_distribution(graph, all_measure, xlabel, filename, metric='degree'):
+    freq = freq_relative(graph, all_measure, metric)
     plt.plot(range(len(freq)), freq, 'o')
     plt.xscale('log')
     plt.yscale('log')
     plt.ylabel('Frequence')
-    plt.xlabel('Degree')
-    plt.savefig(filename+'_freq.eps')
+    plt.xlabel(xlabel)
+    plt.savefig('graphs/'+filename+'_freq.eps')
     plt.clf()
 
 
-def plot_ccdf(graph, all_measure, filename):
-    _ccdf = ccdf(graph, all_measure)
+def plot_ccdf(graph, all_measure, xlabel, filename, metric='degree'):
+    _ccdf = ccdf(graph, all_measure, metric)
     plt.plot(range(len(_ccdf)), _ccdf, 'o')
     plt.xscale('log')
     plt.yscale('log')
-    plt.ylim([0,1])
     plt.ylabel('CCDF')
-    plt.xlabel('Degree')
-    plt.savefig(filename+'_ccdf.eps')
+    plt.xlabel(xlabel)
+    plt.savefig('graphs/'+filename+'_ccdf.eps')
     plt.clf()
+
+
