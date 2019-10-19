@@ -32,7 +32,7 @@ print("Minimum: ", get_min(out_degree))
    Calculating distance and information about
 '''
 # distance = all_shortest_distance(graph)
-distance = sample_shortest_distance(graph)
+distance = all_shortest_distance(graph)
 plot_distribution(graph, distance, 'Distance', 'distance_internet', metric='distance')
 plot_ccdf(graph, distance, 'Distance', 'distance_internet', metric='distance')
 print("\n")
@@ -52,6 +52,30 @@ print("Maximum: ", get_max(distance))
 
 #minimum value
 print("Minimum: ", get_min(distance))
+
+
+'''
+   Calculating size of connected components and information about
+'''
+connected = all_connected_components(graph)
+plot_distribution(graph, connected, 'Connected Components', 'cc_internet', metric='cc')
+plot_ccdf(graph, connected,'Connected Components', 'cc_internet', metric='cc')
+print("\n")
+print("CONNECTED COMPONENTS: ")
+#mean
+print("Mean: ", get_mean(connected))
+
+#standard deviation
+print("Standard Deviation: ", get_std(connected))
+
+#median
+print("Median: ", get_median(connected))
+
+#maximum value
+print("Maximum: ", get_max(connected))
+
+#minimum value
+print("Minimum: ", get_min(connected))
 
 
 '''

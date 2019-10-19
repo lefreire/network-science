@@ -1,6 +1,7 @@
+print("\n")
 from utilities import *
 
-graph = load_graph_from_path('networks/polblogs.gml')
+graph = load_graph_from_path('networks/cond-mat-2003.gml')
 
 print("Number of vertex: ", get_num_vertex(graph))
 print("Number of edges: ", get_num_edges(graph))
@@ -8,48 +9,40 @@ print("Number of edges: ", get_num_edges(graph))
 '''
    Calculating degree and information about
 '''
-in_degree = all_in_degree(graph)
 out_degree = all_out_degree(graph)
-plot_distribution(graph, in_degree, 'In Degree', 'in_degree_blog')
-plot_distribution(graph, out_degree,'Out Degree', 'out_degree_blog')
-plot_ccdf(graph, in_degree, 'In Degree', 'in_degree_blog')
-plot_ccdf(graph, out_degree, 'Out Degree','out_degree_blog')
+plot_distribution(graph, out_degree,'Out Degree', 'out_degree_matter')
+plot_ccdf(graph, out_degree, 'Out Degree','out_degree_matter')
 print("DEGREE: ")
 #mean
 print("Mean: ")
-print("in degree: ", get_mean(in_degree))
 print("out degree: ", get_mean(out_degree))
 print("\n")
 
 #standard deviation
 print("Standard Deviation: ")
-print("in degree: ", get_std(in_degree))
 print("out degree: ", get_std(out_degree))
 print("\n")
 
 #median
 print("Median: ")
-print("in degree: ", get_median(in_degree))
 print("out degree: ", get_median(out_degree))
 print("\n")
 
 #maximum value
 print("Maximum: ")
-print("in degree: ", get_max(in_degree))
 print("out degree: ", get_max(out_degree))
 print("\n")
 
 #minimum value
 print("Minimum: ")
-print("in degree: ", get_min(in_degree))
 print("out degree: ", get_min(out_degree))
 
 '''
    Calculating distance and information about
 '''
 distance = all_shortest_distance(graph)
-plot_distribution(graph, distance, 'Distance', 'distance_blog', metric='distance')
-plot_ccdf(graph, distance, 'Distance', 'distance_blog', metric='distance')
+plot_distribution(graph, distance, 'Distance', 'distance_matter', metric='distance')
+plot_ccdf(graph, distance, 'Distance', 'distance_matter', metric='distance')
 print("\n")
 print("DISTANCE: ")
 #mean
@@ -71,8 +64,8 @@ print("Minimum: ", get_min(distance))
    Calculating size of connected components and information about
 '''
 connected = all_connected_components(graph)
-plot_distribution(graph, connected, 'Connected Components', 'cc_blog', metric='cc')
-plot_ccdf(graph, connected,'Connected Components', 'cc_blog', metric='cc')
+plot_distribution(graph, connected, 'Connected Components', 'cc_matter', metric='cc')
+plot_ccdf(graph, connected,'Connected Components', 'cc_matter', metric='cc')
 print("\n")
 print("CONNECTED COMPONENTS: ")
 #mean
@@ -96,14 +89,14 @@ print("Minimum: ", get_min(connected))
 betweeness = all_betweeness(graph)
 closeness = all_closeness(graph)
 katz = all_katz(graph)
-plot_distribution(graph, betweeness, 'Betweeness','betweeness_blog', metric='betweeness')
-plot_ccdf(graph, betweeness, 'Betweeness', 'betweeness_blog', metric='betweeness')
+plot_distribution(graph, betweeness, 'Betweeness','betweeness_matter', metric='betweeness')
+plot_ccdf(graph, betweeness, 'Betweeness', 'betweeness_matter', metric='betweeness')
 
-plot_distribution(graph, closeness, 'Closeness', 'closeness_blog', metric='closeness')
-plot_ccdf(graph, closeness, 'Closeness', 'closeness_blog', metric='closeness')
+plot_distribution(graph, closeness, 'Closeness', 'closeness_matter', metric='closeness')
+plot_ccdf(graph, closeness, 'Closeness', 'closeness_matter', metric='closeness')
 
-plot_distribution(graph, katz, 'Katz','katz_blog', metric='katz')
-plot_ccdf(graph, katz, 'Katz', 'katz_blog', metric='katz')
+plot_distribution(graph, katz, 'Katz','katz_matter', metric='katz')
+plot_ccdf(graph, katz, 'Katz', 'katz_matter', metric='katz')
 print("\n")
 print("VERTEX CENTRALITY: ")
 #mean
