@@ -119,19 +119,14 @@ def freq_relative(graph, all_measure, metric='degree'):
         distance_distribution = np.bincount(list(all_measure))
         return distance_distribution/comb(get_num_vertex(graph), 2)
     else:
-        return sorted(all_measure/np.max(all_measure), reverse=True)
+        all_measure = np.array(all_measure)
+        all_sum = float(all_measure.sum())
+        return all_measure.cumsum(0)/all_sum  
 
 
 
 def ccdf(graph, all_measure, metric='degree'):
-    freq = freq_relative(graph, all_measure, metric)
-    ccdf = [1]
-    for i in range(1, len(freq)): 
-        sum_freq = 0 
-        for j in range(0, i-1): 
-            sum_freq += freq[j] 
-        ccdf.append(1-sum_freq)
-    return ccdf
+    return 1 - freq_relative(graph, all_measure, metric)
 
 
 def plot_distribution(graph, all_measure, xlabel, filename, metric='degree'):
@@ -139,9 +134,9 @@ def plot_distribution(graph, all_measure, xlabel, filename, metric='degree'):
     plt.plot(range(len(freq)), freq, 'o')
     plt.xscale('log')
     plt.yscale('log')
-    plt.ylabel('Frequence')
+    plt.ylabel('CDF')
     plt.xlabel(xlabel)
-    plt.savefig('graphs/'+filename+'_freq.eps')
+    plt.savefig('graphs/'+filename+'_cdf.eps')
     plt.clf()
 
 
