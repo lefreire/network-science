@@ -1,0 +1,17 @@
+Information about each network:
+
+artist_edges: about pages in Facebook
+- Network with 50515 nodes and 819306 edges
+- Source: http://snap.stanford.edu/data/gemsec-Facebook.html
+
+hep-th: about collaboration between scientists in High-Energy Theory
+- Network with 8361 nodes and 15751 edges
+- Source: http://www-personal.umich.edu/~mejn/netdata/
+
+as-22july06: about autonomous systems
+- Network with 22963 nodes and 48436 edges
+- Source: http://www-personal.umich.edu/~mejn/netdata/
+
+polblogs: about political blogs from US
+- Network with 1490 nodes and 19090 edges
+- Source: http://www-personal.umich.edu/~mejn/netdata/
