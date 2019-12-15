@@ -4,7 +4,8 @@ from utilities import *
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold, KFold
-from sklearn.svm import SVC
+# from sklearn.svm import SVC
+from sklearn.svm import LinearSVC
 
 class CalculateClasses:
 
@@ -150,7 +151,7 @@ class CalculateClasses:
 		return lp.calculate_acc(y_val, y_pred)
 
 	def calculate_ssvm(self, x_train, y_train, x_val, y_val):
-		clf = SVC(gamma='auto')
+		clf = LinearSVC()
 		clf.fit(x_train, y_train)
 		return clf.score(x_val, y_val)
 
