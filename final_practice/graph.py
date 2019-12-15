@@ -1,6 +1,7 @@
 from graph_tool.all import *
 import numpy as np
 from sklearn.metrics import accuracy_score 
+from utilities import *
 
 class ConstructGraph:
 
@@ -96,7 +97,6 @@ class CommunityGraph:
     def detect_community(self):
         self.state = minimize_blockmodel_dl(self.graph.g, B_min=self.n_classes, B_max=self.n_classes)
         self.community_to_labels()
-        print(self.comm_to_lab)
 
     def community_to_labels(self):
         id_communities = set(self.state.b.a)  
@@ -167,6 +167,7 @@ class LabelPropagation:
         self.etarget = None
         self.train_size = 0
         self.prob_labels = [0]*graph.n_classes 
+        self.utilities = Utilities()
 
     def calculate_train_size(self):
         self.train_size = sum([1 for i in self.graph.vprop_label if i != -1])
@@ -192,10 +193,16 @@ class LabelPropagation:
             if self.graph.vprop_label[id_susp] == -1:
                 source_vizinho = self.get_source(id_susp)
                 for i in source_vizinho:
-                    prob = utilities.calculate_distance(i, id_susp, self.graph.vprop_features)*self.prob_labels[self.graph.vprop_label[i]] 
-                    if prob > classes_prob[gg.vprop_label[i]]: 
+                    prob = self.utilities.calculate_distance(i, id_susp, self.graph.vprop_features)*self.prob_labels[self.graph.vprop_label[i]] 
+                    if prob > classes_prob[self.graph.vprop_label[i]]: 
                         classes_prob[self.graph.vprop_label[i]] = prob
                 self.graph.vprop_label[id_susp] = np.argmax(classes_prob)
+
+    def return_label(self):
+        return self.graph.vprop_label.a[self.train_size:]
+
+    def calculate_acc(self, y_test, y_pred):
+        return accuracy_score(y_test, y_pred)
 
 
 
