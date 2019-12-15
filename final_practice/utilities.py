@@ -6,11 +6,12 @@ class Utilities:
 		pass
 
 	def calculate_distance(self, node1, node2, properties_list):
-		# print(properties_list[node1])
 		sum_diff = 0
 		for i in range(0, len(properties_list[node1])):
-			sum_diff += np.abs(properties_list[node1][i] - properties_list[node2][i])
-		return sum_diff/len(properties_list[node1])
+			# sum_diff += np.abs(properties_list[node1][i] - properties_list[node2][i])
+			sum_diff += np.power((properties_list[node1][i] - properties_list[node2][i]), 2)
+		# return sum_diff/len(properties_list[node1])
+		return np.sqrt(sum_diff)
 
 	def calculate_distances(self, node1, all_nodes, properties_list):
 		distances = []

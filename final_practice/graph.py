@@ -63,14 +63,6 @@ class ConstructGraph:
             for i in range(0, k):
                 self.edges_dict[node_1].append(self.g.add_edge(node_1, pos_vertex_list[i]))
                 self.edge_weight[self.edges_dict[node_1][i]] = distance_list[i]
-                
-        # count_neighbors = 0
-        # for i in range(0, len(distance_list)):
-        #     if with_label:
-        #         if self.vprop_label[node_1] == self.vprop_label[pos_vertex_list[i]]: 
-        #             self.edge_weight[self.edges_dict[node_1][i]] = distance_list[i]
-        #             count_neighbors += 1
-        #         if count_neighbors == k: break
         return self.edges_dict
 
     def plot_graph(self):
@@ -188,12 +180,12 @@ class LabelPropagation:
         return source_vizinho
 
     def define_label(self):
-        classes_prob = [0]*self.graph.n_classes
         for id_susp in range(0, len(self.graph.vprop_label.a)):
+            classes_prob = [0]*self.graph.n_classes
             if self.graph.vprop_label[id_susp] == -1:
                 source_vizinho = self.get_source(id_susp)
                 for i in source_vizinho:
-                    prob = self.utilities.calculate_distance(i, id_susp, self.graph.vprop_features)*self.prob_labels[self.graph.vprop_label[i]] 
+                    prob = (1/self.utilities.calculate_distance(i, id_susp, self.graph.vprop_features))*self.prob_labels[self.graph.vprop_label[i]] 
                     if prob > classes_prob[self.graph.vprop_label[i]]: 
                         classes_prob[self.graph.vprop_label[i]] = prob
                 self.graph.vprop_label[id_susp] = np.argmax(classes_prob)
